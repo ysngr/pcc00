@@ -5,7 +5,7 @@ void setup() {
   background(0);
   noLoop();
   blendMode(LIGHTEST);
-  strokeWeight(1.0);
+  strokeWeight(2.5);
 }
 
 
@@ -18,7 +18,7 @@ void draw() {
     rotate(random(PI));
     for ( int h = 0; h < height; h++ ) {
       for ( int w = 0; w < width; w++ ) {
-        if ( random(10) < 6 ) {
+        if ( random(10) < 4 ) {
           stroke(pic.get(w, h), random(50, 80));
           point(w-width/2, h-height/2);
         }
