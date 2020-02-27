@@ -7,7 +7,7 @@ void setup() {
   size(1000, 1000);
   blendMode(ADD);
   noLoop();
-  strokeWeight(0.6);
+  strokeWeight(0.5);
   noFill();
 }
 
@@ -15,13 +15,13 @@ void setup() {
 void draw() {
   background(0);
   initPoints();
-  drawLines();
+  drawNet();
 }
 
 
 void initPoints() {
 
-  points = new float[450][2];
+  points = new float[140][2];
   for ( int i = 0; i < points.length; i++ ) {
     points[i][0] = random(width);
     points[i][1] = random(height);
@@ -31,9 +31,9 @@ void initPoints() {
 }
 
 
-void drawLines() {
+void drawNet() {
 
-  final int MAX_R = 200;
+  final int MAX_R = 240;
 
   for ( int i = 0; i < points.length; i++ ) {
     for ( int j = 0; j < points.length; j++ ) {
@@ -42,7 +42,7 @@ void drawLines() {
       }
       if ( dist(points[i][0], points[i][1], points[j][0], points[j][1]) <= MAX_R ) {
         int[] controlPointsIndexes = findControlPointsIndexes(i, j);
-        stroke(random(255), random(255), random(255), random(80, 170));
+        stroke(random(180, 200), random(20, 60), random(200, 240), random(220, 255));
         bezier(
           points[i][0]                      , points[i][1]                      , 
           points[controlPointsIndexes[0]][0], points[controlPointsIndexes[0]][1], 
