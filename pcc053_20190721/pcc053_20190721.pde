@@ -1,69 +1,33 @@
 /* 053_20190721 */
 
 void setup() {
-  size(1000, 750);
+  size(1000, 1000);
   noLoop();
-  blendMode(SUBTRACT);
+  rectMode(CENTER);
+  stroke(255, 255, 255, 255);
 }
 
 
 void draw() {
-  background(255);
+  background(200);
 
-  final float MIN_R = 45, MAX_R = 80;
+  final float DR = 32.5;
 
-  float r_vert = random(MIN_R, MAX_R);
-  float r_horz = random(MIN_R, MAX_R);
-  color col;
-  int colorIndex = (int)random(7);
-
-  for ( float h = 0; h < height; h += 35 ) {
-    col = selectColor(colorIndex++);
-    for ( float w = -MIN_R; w < width; w += random(10, 30) ) {
-      stroke(random(255), random(255), random(255), 20);
-      fill(col, 15);
-      rect(w + random(-5, 5), h + random(-10, 10), r_vert, r_horz);
+  for ( float h = 0; h <= height; h += DR ) {
+    for ( float w = -DR/2; w <= width; w += DR ) {
+      if ( (h/DR + (w+DR/2)/DR) % 7 == 0 || (h/DR - ((w+DR/2)/DR)) % 7 == 0 ) {
+        pushMatrix();
+        translate(w, h);
+        rotate(PI/7);
+        fill(random(200, 255), random(0, 128), random(150, 200), 255);
+        square(0, 0, DR);
+        popMatrix();
+      } else {
+        fill(random(200, 255), random(0, 128), random(150, 200), 80);
+        square(w, h, DR);
+      }
     }
   }
-}
-
-
-color selectColor(int colIdx) {
-  
-  color c;
-
-  switch( colIdx % 7 ){
-    case 0 :  // red
-      c = color(random(230, 255), random(0, 20), random(0, 20));
-      break;
-    case 1 :  // orange
-      c = color(random(230, 255), random(120, 220), random(0, 20));
-      break;
-    case 2 :  // yellow
-      c = color(random(230, 255), random(180, 240), random(0, 20));
-      break;
-    case 3 :  // green
-      c = color(random(0, 20), random(230, 255), random(0, 20));
-      break;
-    case 4 :  // blue
-      c = color(random(0, 20), random(120, 180), random(230, 255));
-      break;
-    case 5 :  // indigo 
-      c = color(random(0, 20), random(0, 20), random(240, 255));
-      break;
-    case 6 :  // purple
-      c = color(random(170, 220), random(0, 20), random(230, 255));
-      break;
-    default :
-      c = color(0, 0, 0);  // dummy
-  }
-
-  return c;
-}
-
-
-float sgn(float seed) {
-  return (random(seed) >= seed/2)? 1.0 : -1.0;
 }
 
 
