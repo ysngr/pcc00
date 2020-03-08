@@ -6,6 +6,7 @@ float[][][] ps;
 void setup() {
   size(1000, 1000);
   noLoop();
+  rectMode(CENTER);
   init();
 }
 
@@ -32,7 +33,13 @@ void draw() {
     lay((int)random(ps.length), (int)random(ps[0].length));
   }
   for ( int i = 0; i < 200; i++ ) {
-    paint((int)random(ps.length), (int)random(ps[0].length));
+    paintTriangle((int)random(ps.length), (int)random(ps[0].length));
+  }
+  for ( int i = 0; i < 40; i++ ) {
+    paintEllipse((int)random(ps.length), (int)random(ps[0].length));
+  }
+  for ( int i = 0; i < 20; i++ ) {
+    paintRectangle((int)random(ps.length), (int)random(ps[0].length));
   }
 }
 
@@ -67,7 +74,7 @@ void lay(int ri, int ci) {
 }
 
 
-void paint(int ri, int ci) {
+void paintTriangle(int ri, int ci) {
 
   final float XLEN = width / (ps[0].length+1);
   final float YLEN = height / (ps.length+1);
@@ -106,6 +113,28 @@ void paint(int ri, int ci) {
       break;
   }
 
+  return ;
+}
+
+
+void paintEllipse(int ri, int ci){
+  
+  noStroke();
+  fill(random(180, 240), random(180, 220), random(0, 40), random(10, 100));
+  
+  ellipse(ps[ri][ci][0], ps[ri][ci][1], width/(ps[0].length+1), height/(ps.length+1));
+  
+  return ;
+}
+
+
+void paintRectangle(int ri, int ci){
+  
+  noStroke();
+  fill(random(220, 255), random(0, 40), random(180, 220), random(10, 60));
+  
+  rect(ps[ri][ci][0], ps[ri][ci][1], width/(ps[0].length+1), height/(ps.length+1));
+  
   return ;
 }
 
