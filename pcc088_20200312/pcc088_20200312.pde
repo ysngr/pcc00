@@ -14,7 +14,7 @@ void initPoints() {
 
   float t;
 
-  ps = new float[10][360][2];
+  ps = new float[8][360][2];
 
   for ( int i = 0; i < ps.length; i++ ) {
     t = random(PI);
@@ -33,7 +33,7 @@ void draw() {
   background(220);
 
   genWave();
-  for ( int i = 0; i < 32; i++ ) {
+  for ( int i = 0; i < 25; i++ ) {
     paint();
   }
 }
@@ -55,22 +55,25 @@ void genWave() {
 
 void paint() {
 
-  int breadth = (int)random(10, 20);
+  int breadth = (int)random(15, 30);
   int r = (int)random(ps.length-1);
   int c = (int)random(ps[0].length-breadth);
 
-  strokeWeight(1.2);
-  stroke(random(120, 200));
-  fill(random(120, 200), random(150, 255));
-
-  beginShape();
   for ( int i = 0; i < breadth; i++ ) {
-    vertex(ps[r][c+i][0], ps[r][c+i][1]);
+    scratchVertLine(ps[r][c+i][0], ps[r][c+i][1], (ps[r+1][c+i][1]-ps[r][c+i][1]));
   }
-  for ( int i = breadth-1; i >= 0; i-- ) {
-    vertex(ps[r+1][c+i][0], ps[r+1][c+i][1]);
+
+  return ;
+}
+
+
+void scratchVertLine(float x, float y, float len) {
+
+  for ( int l = 0; l < len; l++ ) {
+    strokeWeight(random(1.0, 2.8));
+    stroke(random(120, 200), random(100, 200));
+    point(x, y+l);
   }
-  endShape(CLOSE);
 
   return ;
 }
