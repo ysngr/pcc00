@@ -15,10 +15,10 @@ void draw() {
 
   float x, y;
 
-  for ( int p = 0; p < 400; p++ ) {
+  for ( int p = 0; p < 300; p++ ) {
     //stroke(random(200, 255), random(0, 80), random(0, 80));  // red
-    stroke(random(30, 50), random(80, 100), random(150, 240));  // blue
-    //stroke(random(255));  // gray
+    //stroke(random(30, 50), random(80, 100), random(150, 240));  // blue
+    stroke(random(255), random(255), random(255));
     x = random(width);
     y = random(height);
     for ( int i = 0; i < 8000; i++ ) {
